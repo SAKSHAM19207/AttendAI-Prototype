@@ -1,4 +1,5 @@
 import base64
+import os
 from io import BytesIO
 
 import numpy as np
@@ -9,9 +10,20 @@ from PIL import Image
 
 app = FastAPI()
 
+default_origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+configured_origins = os.getenv("ALLOWED_ORIGINS", "")
+allow_origins = [
+    origin.strip()
+    for origin in configured_origins.split(",")
+    if origin.strip()
+] or default_origins
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=allow_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -57,6 +69,7 @@ def cosine_similarity(left: np.ndarray, right: np.ndarray) -> float:
 def root():
     return {
         "message": "AttendAI backend is running.",
+        "allowed_origins": allow_origins,
         "routes": {
             "health": "/health",
             "recognize": "/recognize",

@@ -52,6 +52,7 @@ Attendance/
 ```bash
 cd attendai
 npm install
+cp .env.example .env
 npm run dev
 ```
 
@@ -64,6 +65,7 @@ From the repository root:
 ```bash
 ./venv/bin/pip install -r attendai-backend/requirements.txt
 cd attendai-backend
+cp .env.example .env
 ../venv/bin/uvicorn server:app --host 127.0.0.1 --port 8000
 ```
 
@@ -105,6 +107,64 @@ Use these demo accounts from the frontend login screen:
 - `POST /recognize`
   - Attempts to match a live image against the registered set
 
+## Deployment Guide
+
+This project can be deployed as a demo app with:
+
+- Frontend on Vercel or Netlify
+- Backend on Render or Railway
+
+### Frontend deployment
+
+Deploy the `attendai` folder as a Vite app.
+
+Build settings:
+
+- Build command: `npm run build`
+- Output directory: `dist`
+
+Set this environment variable in your frontend hosting platform:
+
+```bash
+VITE_API_BASE_URL=https://your-backend-url.onrender.com
+```
+
+### Backend deployment
+
+Deploy the `attendai-backend` folder as a Python web service.
+
+Suggested start command:
+
+```bash
+uvicorn server:app --host 0.0.0.0 --port $PORT
+```
+
+Set this environment variable in your backend hosting platform:
+
+```bash
+ALLOWED_ORIGINS=https://your-frontend-url.vercel.app
+```
+
+If you need multiple frontend origins, separate them with commas:
+
+```bash
+ALLOWED_ORIGINS=https://your-frontend-url.vercel.app,https://your-second-domain.com
+```
+
+### Deployment flow
+
+1. Deploy the backend first.
+2. Copy the deployed backend URL.
+3. Set `VITE_API_BASE_URL` in the frontend deployment settings.
+4. Deploy the frontend.
+5. Copy the deployed frontend URL.
+6. Set `ALLOWED_ORIGINS` in the backend deployment settings.
+7. Redeploy the backend if required by the platform.
+
+### Important deployment note
+
+This deployment is suitable for demos, portfolios, and prototype reviews only. The backend currently stores face data in memory, so restarting the service clears registered faces.
+
 ## Important Limitations
 
 - Registered faces are stored in memory only and are lost when the server restarts.
@@ -140,8 +200,8 @@ This repository is best used for:
 
 ## Notes For Contributors
 
-- The frontend API base URL is currently hardcoded to `http://127.0.0.1:8000`.
-- The backend allows frontend requests from `http://localhost:5173` and `http://127.0.0.1:5173`.
+- The frontend API base URL is controlled by `VITE_API_BASE_URL` and defaults to `http://127.0.0.1:8000`.
+- The backend CORS allowlist is controlled by `ALLOWED_ORIGINS` and defaults to local Vite origins.
 - If camera access fails, verify browser permissions first.
 
 ## License
