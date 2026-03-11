@@ -4,14 +4,6 @@ AttendAI Prototype is a facial-recognition attendance demo that shows how a mode
 
 This repository is a prototype, not a production-ready biometric system. It is intended to demonstrate product direction, user flow, and technical feasibility. If engineered properly with secure identity handling, stronger ML models, compliance controls, and persistent infrastructure, the same concept could be applied in real educational or workplace attendance systems.
 
-## GitHub Title
-
-`AttendAI Prototype`
-
-## GitHub Description
-
-Prototype facial-recognition attendance system built with React and FastAPI. Demonstrates face registration, live attendance scanning, and role-based dashboards with real-world expansion potential.
-
 ## What It Does
 
 - Provides a React frontend with admin, teacher, and student demo views.
