@@ -2,6 +2,12 @@
 
 To use this project from GitHub, start by downloading the repository to your computer. You can do this either by cloning it with Git or by downloading the ZIP file from GitHub.
 
+## Live Website
+
+If you just want to use the deployed prototype without local setup, open:
+
+- https://attend-ai-prototype.vercel.app/
+
 ### 1. Download the project
 
 If you have Git installed, open a terminal and run:
@@ -158,3 +164,9 @@ cd attendai-backend
 ```
 
 Then open `http://localhost:5173` and use the app.
+
+## Direct online use
+
+You can also use the deployed website directly here:
+
+- https://attend-ai-prototype.vercel.app/

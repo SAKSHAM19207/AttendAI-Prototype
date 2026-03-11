@@ -4,6 +4,14 @@ AttendAI Prototype is a facial-recognition attendance demo that shows how a mode
 
 This repository is a prototype, not a production-ready biometric system. It is intended to demonstrate product direction, user flow, and technical feasibility. If engineered properly with secure identity handling, stronger ML models, compliance controls, and persistent infrastructure, the same concept could be applied in real educational or workplace attendance systems.
 
+## Live Demo
+
+The deployed frontend is available at:
+
+- https://attend-ai-prototype.vercel.app/
+
+You can open the live app directly from GitHub and use the demo login credentials listed below.
+
 ## What It Does
 
 - Provides a React frontend with admin, teacher, and student demo views.
@@ -76,6 +84,12 @@ The backend runs at `http://127.0.0.1:8000`.
 - Frontend: `http://localhost:5173`
 - Backend health check: `http://127.0.0.1:8000/health`
 - Backend API docs: `http://127.0.0.1:8000/docs`
+
+### Live deployed version
+
+If you do not want to run the project locally, use the deployed frontend:
+
+- https://attend-ai-prototype.vercel.app/
 
 ## Demo Login Credentials
 
@@ -164,6 +178,10 @@ ALLOWED_ORIGINS=https://your-frontend-url.vercel.app,https://your-second-domain.
 ### Important deployment note
 
 This deployment is suitable for demos, portfolios, and prototype reviews only. The backend currently stores face data in memory, so restarting the service clears registered faces.
+
+### Current deployed frontend
+
+- https://attend-ai-prototype.vercel.app/
 
 ## Important Limitations
 
